@@ -1,5 +1,3 @@
-import React from "react";
-
 function Footer() {
   return (
     <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800 ">
@@ -104,7 +102,7 @@ function Footer() {
       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div className="flex sm:flex sm:items-center sm:justify-between">
         <span className="m-auto text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2024 Giana's Beauty Club. All Rights Reserved.
+          © 2024 Giana&apos;s Beauty Club. All Rights Reserved.
         </span>
       </div>
     </footer>
