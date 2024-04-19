@@ -5,16 +5,17 @@ import ContenidoHome from './components/ContenidoHome';
 import Login from './components/login';
 import Routes from './Routes'
 import RegisterForm from './components/RegisterForm';
+import Footer from './components/footer';
+import ContenidoCarrusel from './components/carrusel';
 
 function App() {
   return (
-    /*
+    
     <div>
       <Navbar />
-      <ContenidoHome/>
-      <ContenidoHomeNosotros/>
+      <ContenidoCarrusel/>
     </div>
-    */
+    
 
     /*
     <div>
@@ -28,11 +29,20 @@ function App() {
         </div>
     */
 
-    
+    /*
     <div>
       <Routes/>
     </div>
-    
+    */
+
+    /*
+    <div>
+      <Navbar/>
+      <ContenidoHomeNosotros/>
+      <ContenidoHome/>
+      <Footer/>
+    </div>
+    */
 
   );
 }

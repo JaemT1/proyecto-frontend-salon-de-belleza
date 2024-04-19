@@ -19,7 +19,9 @@ const Navbar = () => {
     <nav className="bg-sky-950 py-4 px-6 flex justify-between items-center">
       <div  >
         {/* Enlace a la página de inicio */}
+          
           <img src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1713123040/logo%20blanco.png" alt="Logo" style={{ width: '135px' }}/>
+          
       </div>
       <ul className="flex space-x-4 items-center">
         {/* Botones para otras páginas */}

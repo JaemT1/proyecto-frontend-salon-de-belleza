@@ -1,12 +1,13 @@
-import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
+//import { useNavigate } from 'react-router-dom';
 
+// eslint-disable-next-line react/prop-types
 const Login = ({closeModal}) => {
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
-    const [loginType, setLoginType] = useState('user');
-    const [showContent, setShowContent] = useState(true);
+    //const [loginType, setLoginType] = useState('user');
+    //const [showContent, setShowContent] = useState(true);
 
     const modalRef = useRef(null);
 
@@ -53,7 +54,6 @@ const Login = ({closeModal}) => {
                                 placeholder="*******"
                             />
                         </div>
-
 
                         <div className="flex">
                             {/*
