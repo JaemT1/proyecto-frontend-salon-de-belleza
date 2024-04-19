@@ -11,12 +11,13 @@ import ContenidoCarrusel from './components/carrusel';
 function App() {
   return (
     
+    /*
     <div>
       <Navbar />
       <ContenidoCarrusel/>
       <Footer/>
     </div>
-    
+    */
 
     /*
     <div>
@@ -36,15 +37,14 @@ function App() {
     </div>
     */
 
-    /*
+    
     <div>
       <Navbar/>
-      <ContenidoHomeNosotros/>
       <ContenidoHome/>
+      <ContenidoHomeNosotros/>
       <Footer/>
     </div>
-    */
-
+    
   );
 }
 

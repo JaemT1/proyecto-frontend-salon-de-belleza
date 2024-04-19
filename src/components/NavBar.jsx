@@ -25,15 +25,15 @@ const Navbar = () => {
       </div>
       <ul className="flex space-x-4 items-center">
         {/* Botones para otras páginas */}
-        <li className="text-white hover:text-pink-400 hover:border-b-2 border-pink-400 transition duration-300 px-4 font-mono">
+        <li className="text-white hover:text-pink-400 hover:border-b-4 rounded border-pink-400 transition duration-300 px-4 font-mono">
           {/* Puedes agregar más enlaces según tus necesidades */}
             Inicio
         </li>
-        <li className="text-white hover:text-pink-400 hover:border-b-2 border-pink-400 transition duration-300 px-4 font-mono">
+        <li className="text-white hover:text-pink-400 hover:border-b-4 rounded border-pink-400 transition duration-300 px-4 font-mono">
           {/* Puedes agregar más enlaces según tus necesidades */}
             Agenda tu cita
         </li>
-        <li className="text-white hover:text-pink-400 hover:border-b-2 rounded border-pink-400 transition duration-300 px-4 font-mono">
+        <li className="text-white hover:text-pink-400 hover:border-b-4 rounded border-pink-400 transition duration-300 px-4 font-mono">
           {/* Puedes agregar más enlaces según tus necesidades */}
             Cotización Personalizada
         </li>
