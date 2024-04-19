@@ -18,7 +18,7 @@ const Login = ({closeModal}) => {
       };
       
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={handleOutsideClick}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={handleOutsideClick}>
         <div className="bg-white rounded-lg p-8 w-[800px]" ref={modalRef}>
             <form action="" >
                 <div className="flex items-center justify-center h-auto">
