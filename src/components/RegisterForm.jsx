@@ -1,12 +1,12 @@
-import { useRef, useState } from 'react';
+import { React, useRef, useState } from 'react';
 
-const RegisterForm = ({ closeModal }) => {
+const RegisterForm = ({ closeRegisterModal }) => {
 
     const modalRef = useRef(null);
 
     const handleOutsideClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
-            closeModal();
+            closeRegisterModal();
         }
     };
 
@@ -44,11 +44,16 @@ const RegisterForm = ({ closeModal }) => {
         // Handle form submission
     };
 
-    return (
+    const handleModalClick = (e) => {
+        // Evita que el evento se propague desde el formulario hasta el contenedor del modal
+        e.stopPropagation();
+    };
 
+
+    return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={handleOutsideClick}>
-            <div className="bg-white rounded-lg p-8 max-w-lg" ref={modalRef}>
-                <form onSubmit={handleSubmit}>
+            <div className=" bg-white rounded-lg p-8 max-w-lg" ref={modalRef} >
+                <form onSubmit={handleSubmit} onClick={handleModalClick}>
 
                     <div className='flex items-center justify-center mb-2'>
                         <h1 className="font-serif font-bold text-gray-700 text-2xl">
@@ -112,6 +117,7 @@ const RegisterForm = ({ closeModal }) => {
                                 type="tel"
                                 name="telefono"
                                 value={formData.telefono}
+                                maxLength={10}
                                 onChange={handleInputChange}
                                 placeholder='Teléfono'
                                 className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
@@ -128,6 +134,7 @@ const RegisterForm = ({ closeModal }) => {
                                 value={formData.correo}
                                 onChange={handleInputChange}
                                 placeholder='Correo'
+                                required
                                 className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                             />
                         </div>
@@ -144,6 +151,7 @@ const RegisterForm = ({ closeModal }) => {
                             value={formData.contrasena}
                             onChange={handleInputChange}
                             placeholder='********'
+                            maxLength={10}
                             className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                         />
                     </div>
@@ -158,6 +166,7 @@ const RegisterForm = ({ closeModal }) => {
                             value={formData.confirmarContrasena}
                             onChange={handleInputChange}
                             placeholder='********'
+                            maxLength={10}
                             className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                         />
                     </div>

@@ -1,14 +1,7 @@
 import { useRef, useState } from 'react';
 import RegisterForm from './RegisterForm';
-//import { useNavigate } from 'react-router-dom';
 
-// eslint-disable-next-line react/prop-types
 const Login = ({ closeModal }) => {
-
-    //const navigate = useNavigate();
-
-    //const [loginType, setLoginType] = useState('user');
-    //const [showContent, setShowContent] = useState(true);
 
     const modalRef = useRef(null);
 
@@ -23,8 +16,7 @@ const Login = ({ closeModal }) => {
 
     const toggleRegisterModal = () => {
         setShowRegisterModal(!showRegisterModal);
-      };
-
+    };
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40" onClick={handleOutsideClick}>
@@ -51,7 +43,6 @@ const Login = ({ closeModal }) => {
                                     placeholder="ejemplo@correo.com"
                                 />
                             </div>
-
                             <div className="mb-8 border-b-2 border-pink-500 py-2">
                                 <label htmlFor="password" className="block text-gray-700 font-bold mb-2 font-serif">
                                     CONTRASEÑA
@@ -61,9 +52,9 @@ const Login = ({ closeModal }) => {
                                     className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                                     id="password"
                                     placeholder="*******"
+                                    maxLength={10}
                                 />
                             </div>
-
                             <div className="flex">
                                 <button className="w-full bg-pink-500 group relative bg-gradient-to-r bg-length-0 bg-position-right text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-gradient-to-r hover:bg-length-full hover:bg-position-0 transition duration-1000 hover:bg-pink-300">
                                     Iniciar Sesión
@@ -84,9 +75,9 @@ const Login = ({ closeModal }) => {
                         </div>
                     </div>
                 </form>
+                {/* Renderizar el componente RegisterForm dentro del modal */}
+                {showRegisterModal ? (<RegisterForm closeRegisterModal={toggleRegisterModal} />) : null}
             </div>
-            {/* Abre el modal de registro si está activo */}
-            {showRegisterModal ? (<RegisterForm closeModal={toggleRegisterModal} />) : null}
         </div>
     );
 };
