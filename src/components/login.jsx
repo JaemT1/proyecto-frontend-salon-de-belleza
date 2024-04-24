@@ -1,7 +1,10 @@
 import { useRef, useState } from 'react';
+import Swal from 'sweetalert2'
+import loginUser from '../services/usuarioLoginService';
 import RegisterForm from './RegisterForm';
 
 const Login = ({ closeModal }) => {
+
 
     const modalRef = useRef(null);
 
@@ -18,10 +21,51 @@ const Login = ({ closeModal }) => {
         setShowRegisterModal(!showRegisterModal);
     };
 
+    const [formData, setFormData] = useState({
+        correo: '',
+        contrasena: ''
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Formulario enviado con datos:', formData);
+        
+        const loginSuccess = await loginUser(formData);
+
+        if(loginSuccess){
+            Swal.fire({
+                icon: "success",
+                title: "Bienvenido (a)",
+                text: "Sesión Iniciada con éxito",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            setTimeout(() => {
+                window.location.reload();
+              }, 1600);
+        }else {
+            Swal.fire({
+                title: "Hubo un error :(",
+                text: "Verifica tu correo y contraseña",
+                icon: "error"
+            });
+        }
+
+        closeModal();
+    };
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40" onClick={handleOutsideClick}>
             <div className="bg-white rounded-lg p-8 w-[800px]" ref={modalRef}>
-                <form action="" >
+                <form onSubmit={handleSubmit} >
                     <div className="flex items-center justify-center h-auto">
                         <div className="w-2/4">
                             <div className=" mb-4 w-auto m-auto">
@@ -33,30 +77,38 @@ const Login = ({ closeModal }) => {
                                 </h1>
                             </div>
                             <div className="mb-4 border-b-2 border-pink-500 ">
-                                <label htmlFor="email" className="block text-gray-600 font-bold mb-2 font-serif">
+                                <label htmlFor="correo" className="block text-gray-600 font-bold mb-2 font-serif">
                                     CORREO ELECTRONICO
                                 </label>
                                 <input
                                     type="email"
                                     className=" flexappearance-none bg-transparent border-none w-full text-gray-700 mr-3 px-2 leading-tight focus:outline-none"
-                                    id="email"
+                                    id="correo"
                                     placeholder="ejemplo@correo.com"
+                                    name="correo"
+                                    value={formData.correo}
+                                    onChange={handleInputChange}
                                 />
                             </div>
                             <div className="mb-8 border-b-2 border-pink-500 py-2">
-                                <label htmlFor="password" className="block text-gray-700 font-bold mb-2 font-serif">
+                                <label htmlFor="contrasena" className="block text-gray-700 font-bold mb-2 font-serif">
                                     CONTRASEÑA
                                 </label>
                                 <input
                                     type="password"
                                     className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                    id="password"
+                                    id="contrasena"
                                     placeholder="*******"
-                                    maxLength={10}
+                                    //maxLength={10}
+                                    name="contrasena"
+                                    value={formData.contrasena}
+                                    onChange={handleInputChange}
                                 />
                             </div>
                             <div className="flex">
-                                <button className="w-full bg-pink-500 group relative bg-gradient-to-r bg-length-0 bg-position-right text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-gradient-to-r hover:bg-length-full hover:bg-position-0 transition duration-1000 hover:bg-pink-300">
+                                <button 
+                                onSubmit={handleSubmit}
+                                className="w-full bg-pink-500 group relative bg-gradient-to-r bg-length-0 bg-position-right text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-gradient-to-r hover:bg-length-full hover:bg-position-0 transition duration-1000 hover:bg-pink-300">
                                     Iniciar Sesión
                                 </button>
                             </div>
