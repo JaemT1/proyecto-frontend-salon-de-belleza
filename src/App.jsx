@@ -41,7 +41,7 @@ function App() {
     
     <div>
       <Navbar/>
-      <ContenidoHome/>
+      <ContenidoCarrusel/>
       <ContenidoHomeNosotros/>
       <Footer/>
     </div>
