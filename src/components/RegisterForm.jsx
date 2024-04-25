@@ -43,8 +43,25 @@ const RegisterForm = ({ closeRegisterModal }) => {
         }
     };
 
-    const handlePasswordVerification = (e) => {
+    const handlePasswordVerification = (password) => {
+        // Verificar que la contraseña tenga al menos una mayúscula
+        const uppercaseRegex = /(?=.*[A-Z])/;
 
+        // Verificar que la contraseña tenga al menos un carácter especial [.,!-#$%]
+        const specialCharRegex = /(?=.*[.,!-#$%])/;
+
+        // Verificar que la contraseña tenga al menos un número
+        const digitRegex = /(?=.*[0-9])/;
+
+        // Verificar que la contraseña tenga al menos una letra
+        const letterRegex = /(?=.*[a-zA-Z])/;
+
+        if(uppercaseRegex.test(password) && specialCharRegex.test(password) && 
+            digitRegex.test(password) && letterRegex.test(password)){
+            return true;
+        }else{
+            return false;
+        }
     };
 
     const showLoadingAlert = () => {
@@ -56,13 +73,11 @@ const RegisterForm = ({ closeRegisterModal }) => {
             timerProgressBar: true,
             didOpen: () => {
                 Swal.showLoading();
-                
             },
             willClose: () => {
                 clearInterval(timerInterval);
             }
         }).then((result) => {
-            /* Read more about handling dismissals below */
             if (result.dismiss === Swal.DismissReason.timer) {
                 console.log("I was closed by the timer");
             }
@@ -71,55 +86,63 @@ const RegisterForm = ({ closeRegisterModal }) => {
 
     const handlePasswordHashing = async (e) => {
         e.preventDefault();
-        // Encriptar la contraseña antes de enviarla al backend
         const hashedPassword = await bcrypt.hash(formData.contrasena, 10);
         formData.contrasena = hashedPassword;
     };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
 
-        //Falta verificar que tenga al menos una mayuscula, un caracter especial [.,!-#$%], un número
-        if (formData.contrasena == formData.confirmarContrasena) {
-            showLoadingAlert();
-            handlePasswordHashing(e);
+        if (formData.contrasena == formData.confirmarContrasena) { //Verifica que las contraseñas sean iguales
+            if (handlePasswordVerification(formData.contrasena)) { //Verifica que la contraseña tenga los criterios de seguridad
+                showLoadingAlert();
+                handlePasswordHashing(e); //Encripta la contraseña antes de enviarla al backend
 
-            try {
-                // Cargar la foto en Cloudinary
-                let imageUrl = null;
-                if (formData.fotoPerfil) {
-                    imageUrl = await userRegisterService.uploadPhotoToCloudinary(formData.fotoPerfil, formData.correo);
-                    console.log('Foto cargada en Cloudinary con éxito:', imageUrl);
+                try {
+                    // Carga la foto en Cloudinary
+                    let imageUrl = null;
+                    if (formData.fotoPerfil) {
+                        imageUrl = await userRegisterService.uploadPhotoToCloudinary(formData.fotoPerfil, formData.correo);
+                        console.log('Foto cargada en Cloudinary con éxito:', imageUrl);
+                    }
+
+                    const formularioUsuario = {
+                        nombre: formData.nombre,
+                        apellido: formData.apellido,
+                        telefono: formData.telefono,
+                        link_foto: imageUrl,
+                        correo: formData.correo,
+                        contrasena: formData.contrasena,
+                        role: 'CUSTOMER'
+                    };
+
+                    //Guarda el usuario en base de datos
+                    const response = await userRegisterService.registerUser(formularioUsuario);
+
+                    console.log('Respuesta del registro:', response);
+
+                    Swal.fire({
+                        title: 'Registro de Usuarios',
+                        text: 'Registro Exitoso. Bienvenido(a)',
+                        icon: 'success',
+                        timer: '2000',
+                        showConfirmButton: false
+                    });
+
+                    closeRegisterModal();
+
+                } catch (error) {
+                    throw new Error(`Error al registrar, verifique los datos ingresados: ${error.message}`);
                 }
-
-                const formularioUsuario = {
-                    nombre: formData.nombre,
-                    apellido: formData.apellido,
-                    telefono: formData.telefono,
-                    link_foto: imageUrl,
-                    correo: formData.correo,
-                    contrasena: formData.contrasena,
-                    role: 'CUSTOMER'
-                };
-
-                const response = await userRegisterService.registerUser(formularioUsuario);
-
-                console.log('Respuesta del registro:', response);
-
+            } else {
                 Swal.fire({
-                    title: 'Registro de Usuarios',
-                    text: 'Registro Exitoso. Bienvenido(a)',
-                    icon: 'success',
-                    timer: '2000',
+                    title: "Verifica la contraseña",
+                    text: "La contraseña debe tener al menos una mayúscula, un carácter especial y un número",
+                    icon: "error",
+                    timer: "2500",
                     showConfirmButton: false
                 });
-
-                closeRegisterModal();
-
-            } catch (error) {
-                throw new Error(`Error al registrar, verifique los datos ingresados: ${error.message}`);
             }
 
         } else {
@@ -243,7 +266,8 @@ const RegisterForm = ({ closeRegisterModal }) => {
                             name="contrasena"
                             value={formData.contrasena}
                             onChange={handleInputChange}
-                            placeholder='********'
+                            placeholder='**********'
+                            minLength={10}
                             maxLength={10}
                             className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                             required
@@ -259,7 +283,8 @@ const RegisterForm = ({ closeRegisterModal }) => {
                             name="confirmarContrasena"
                             value={formData.confirmarContrasena}
                             onChange={handleInputChange}
-                            placeholder='********'
+                            placeholder='**********'
+                            minLength={10}
                             maxLength={10}
                             className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                             required

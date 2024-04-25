@@ -6,7 +6,7 @@ function ContenidoHomeNosotros() {
           src="./src/images/Nosotros.png"
           alt="Imagen"
           className="w-[300px] h-[500] rounded"
-        />
+        />   
 
         <div>
           <p className="text-xl font-semibold m-2 text-center">Nosotros</p>

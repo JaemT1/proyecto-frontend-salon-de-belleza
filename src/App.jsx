@@ -7,6 +7,8 @@ import Routes from './Routes'
 import RegisterForm from './components/RegisterForm';
 import Footer from './components/footer';
 import ContenidoCarrusel from './components/carrusel';
+import ContenidoHomeDaysi from './components/ContenidoHomeDaysi';
+import { GalleryWithCarousel } from './components/ContenidoHomeMaterial';
 
 function App() {
   return (
@@ -41,7 +43,7 @@ function App() {
     
     <div>
       <Navbar/>
-      <ContenidoCarrusel/>
+      <GalleryWithCarousel/>
       <ContenidoHomeNosotros/>
       <Footer/>
     </div>
