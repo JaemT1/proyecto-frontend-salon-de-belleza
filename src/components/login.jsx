@@ -58,7 +58,6 @@ const Login = ({ closeModal }) => {
                 icon: "error"
             });
         }
-
         closeModal();
     };
 

@@ -1,4 +1,8 @@
 import { React, useRef, useState } from 'react';
+import Swal from 'sweetalert2'
+import bcrypt from "bcryptjs-react";
+import userRegisterService from '../services/usuarioRegisterService';
+
 
 const RegisterForm = ({ closeRegisterModal }) => {
 
@@ -39,9 +43,94 @@ const RegisterForm = ({ closeRegisterModal }) => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handlePasswordVerification = (e) => {
+
+    };
+
+    const showLoadingAlert = () => {
+        let timerInterval;
+        Swal.fire({
+            title: "Cargando",
+            html: "Espere porfavor",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+                
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log("I was closed by the timer");
+            }
+        });
+    };
+
+    const handlePasswordHashing = async (e) => {
         e.preventDefault();
-        // Handle form submission
+        // Encriptar la contraseña antes de enviarla al backend
+        const hashedPassword = await bcrypt.hash(formData.contrasena, 10);
+        formData.contrasena = hashedPassword;
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(formData);
+
+        //Falta verificar que tenga al menos una mayuscula, un caracter especial [.,!-#$%], un número
+        if (formData.contrasena == formData.confirmarContrasena) {
+            showLoadingAlert();
+            handlePasswordHashing(e);
+
+            try {
+                // Cargar la foto en Cloudinary
+                let imageUrl = null;
+                if (formData.fotoPerfil) {
+                    imageUrl = await userRegisterService.uploadPhotoToCloudinary(formData.fotoPerfil, formData.correo);
+                    console.log('Foto cargada en Cloudinary con éxito:', imageUrl);
+                }
+
+                const formularioUsuario = {
+                    nombre: formData.nombre,
+                    apellido: formData.apellido,
+                    telefono: formData.telefono,
+                    link_foto: imageUrl,
+                    correo: formData.correo,
+                    contrasena: formData.contrasena,
+                    role: 'CUSTOMER'
+                };
+
+                const response = await userRegisterService.registerUser(formularioUsuario);
+
+                console.log('Respuesta del registro:', response);
+
+                Swal.fire({
+                    title: 'Registro de Usuarios',
+                    text: 'Registro Exitoso. Bienvenido(a)',
+                    icon: 'success',
+                    timer: '2000',
+                    showConfirmButton: false
+                });
+
+                closeRegisterModal();
+
+            } catch (error) {
+                throw new Error(`Error al registrar, verifique los datos ingresados: ${error.message}`);
+            }
+
+        } else {
+            Swal.fire({
+                title: "Verifica la contraseña",
+                text: "Las contraseñas deben ser iguales",
+                icon: "error",
+                timer: "2500",
+                showConfirmButton: false
+            });
+        }
     };
 
     const handleModalClick = (e) => {
@@ -69,6 +158,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                             id="fotoPerfil"
                             onChange={handleInputChange}
                             className="hidden"
+                            required
                         />
                         <label htmlFor="fotoPerfil" className="bg-pink-500 text-white rounded-full p-2 cursor-pointer hover:bg-pink-300 mr-2 absolute top-0 right-0">
                             +
@@ -90,6 +180,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                                 onChange={handleInputChange}
                                 placeholder='Nombre'
                                 className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                                required
                             />
                         </div>
                         <div className='w-1/2 px-2'>
@@ -103,6 +194,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                                 onChange={handleInputChange}
                                 placeholder='Apellido'
                                 className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                                required
                             />
                         </div>
                     </div>
@@ -121,6 +213,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                                 onChange={handleInputChange}
                                 placeholder='Teléfono'
                                 className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                                required
                             />
                         </div>
 
@@ -153,6 +246,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                             placeholder='********'
                             maxLength={10}
                             className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                            required
                         />
                     </div>
                     {/* Contenedor que tiene el input de confirmar la contraseña*/}
@@ -168,6 +262,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                             placeholder='********'
                             maxLength={10}
                             className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                            required
                         />
                     </div>
                     <div className="flex">
