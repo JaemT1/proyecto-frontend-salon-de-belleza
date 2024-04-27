@@ -40,7 +40,6 @@ module.exports = withMT({
     },
   },
   plugins: [
-    require('flowbite/plugin'),
-    require("daisyui"),
+    require('flowbite/plugin')
   ],
 });

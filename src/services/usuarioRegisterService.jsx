@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const BASE_URL = 'http://localhost:9009'; // Reemplaza con la URL base de tu servidor
 
 const userRegisterService = {

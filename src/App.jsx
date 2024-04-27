@@ -1,13 +1,7 @@
-import React from 'react';
 import Navbar from './components/NavBar';
 import ContenidoHomeNosotros from './components/ContenidoHomeNosotros';
-import ContenidoHome from './components/ContenidoHome';
-import Login from './components/login';
-import Routes from './Routes'
-import RegisterForm from './components/RegisterForm';
 import Footer from './components/footer';
-import ContenidoCarrusel from './components/carrusel';
-import ContenidoHomeDaysi from './components/ContenidoHomeDaysi';
+import { GalleryWithTab } from './components/ContenidoHomeGaleria';
 import { GalleryWithCarousel } from './components/ContenidoHomeMaterial';
 
 function App() {
@@ -45,6 +39,8 @@ function App() {
       <Navbar/>
       <GalleryWithCarousel/>
       <ContenidoHomeNosotros/>
+      <div className="w-[900px] h-px bg-[#883362]  block mx-auto mb-[60px]"></div>
+      <GalleryWithTab/>
       <Footer/>
     </div>
     
