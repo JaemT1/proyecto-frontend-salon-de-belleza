@@ -10,6 +10,7 @@ const AppRoutes = () => {
             {
             <Routes>
                 <Route path="/" element={<ContenidoHome />} />
+
             </Routes>
             }
         </Router>

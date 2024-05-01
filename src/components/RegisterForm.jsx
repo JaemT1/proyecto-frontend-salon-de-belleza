@@ -163,7 +163,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
 
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={handleOutsideClick}>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={handleOutsideClick}>
             <div className=" bg-white rounded-lg p-8 max-w-lg" ref={modalRef} >
                 <form onSubmit={handleSubmit} onClick={handleModalClick}>
 
@@ -202,7 +202,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                                 value={formData.nombre}
                                 onChange={handleInputChange}
                                 placeholder='Nombre'
-                                className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                                className="flexappearance-none bg-transparent border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-transparent focus:ring focus:border-pink-500"
                                 required
                             />
                         </div>
@@ -216,7 +216,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                                 value={formData.apellido}
                                 onChange={handleInputChange}
                                 placeholder='Apellido'
-                                className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                                className="flexappearance-none bg-transparent border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-transparent focus:ring focus:border-pink-500"
                                 required
                             />
                         </div>
@@ -235,7 +235,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                                 maxLength={10}
                                 onChange={handleInputChange}
                                 placeholder='Teléfono'
-                                className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                                className="flexappearance-none bg-transparent border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-transparent focus:ring focus:border-pink-500"
                                 required
                             />
                         </div>
@@ -251,7 +251,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                                 onChange={handleInputChange}
                                 placeholder='Correo'
                                 required
-                                className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                                className="flexappearance-none bg-transparent border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-transparent focus:ring focus:border-pink-500"
                             />
                         </div>
                     </div>
@@ -269,7 +269,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                             placeholder='**********'
                             minLength={10}
                             maxLength={10}
-                            className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                            className="flexappearance-none bg-transparent border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-transparent focus:ring focus:border-pink-500"
                             required
                         />
                     </div>
@@ -286,7 +286,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                             placeholder='**********'
                             minLength={10}
                             maxLength={10}
-                            className="flexappearance-none border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                            className="flexappearance-none bg-transparent border-b-2 border-x-0 border-t-0 border-pink-500 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-transparent focus:ring focus:border-pink-500"
                             required
                         />
                     </div>

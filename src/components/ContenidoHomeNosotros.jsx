@@ -4,10 +4,10 @@ function ContenidoHomeNosotros() {
       <div className="mr-[130px] mb-[4px] flex items-center">
         
         <div className="text-gray-600 ml-40 mr-40">
-          <p className="text-xl font-semibold m-2 text-center">Nosotros</p>
+          <p className="text-2xl font-semibold m-2 text-center">Nosotros</p>
 
           {/* Lorem Ipsum debajo del botón */}
-          <div className="w-1/5 h-1 bg-[#ac407b]  block mx-auto mb-[60px]"></div>
+          <div className="w-1/5 h-1 bg-pink-400 block mx-auto mb-[60px]"></div>
           <p className="text-gray-600 ml-4">
             ¡Bienvenidos a Giana&apos;s Beauty Club! Somos un oasis de elegancia
             y bienestar, donde la belleza y la relajación se unen en perfecta

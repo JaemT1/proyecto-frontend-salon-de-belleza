@@ -1,8 +1,10 @@
 import Navbar from './components/NavBar';
 import ContenidoHomeNosotros from './components/ContenidoHomeNosotros';
 import Footer from './components/footer';
-import { GalleryWithTab } from './components/ContenidoHomeGaleria';
-import { GalleryWithCarousel } from './components/ContenidoHomeMaterial';
+import { GalleryWithTab } from './components/ContenidoHomeNuestroTrabajo';
+import { GalleryWithCarousel } from './components/ContenidoHomeGaleria';
+import PasswordRecoveryModal from './components/PasswordRecoveryModal';
+import PasswordResetModal from './components/PasswordResetModal';
 
 function App() {
   return (
@@ -38,12 +40,19 @@ function App() {
     <div>
       <Navbar/>
       <GalleryWithCarousel/>
+      <div className="w-[900px] h-px bg-pink-400 block mx-auto mb-[60px] mt-[60px]"></div>
       <ContenidoHomeNosotros/>
-      <div className="w-[900px] h-px bg-[#883362]  block mx-auto mb-[60px]"></div>
+      <div className="w-[900px] h-px bg-pink-400 block mx-auto mb-[60px]"></div>
       <GalleryWithTab/>
       <Footer/>
     </div>
     
+
+    /*
+    <div>
+      <PasswordResetModal/>
+    </div>
+    */
   );
 }
 

@@ -1,20 +1,20 @@
 function Footer() {
   return (
-    <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800 ">
+    <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-900 border-2">
       <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between"></div>
       <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
         <div className="col-span-1 border-r border-black pt-4">
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            <h2 className="ml-4 mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
               Acerca de
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
+              <li className="mb-4 ml-4">
                 Invertir en tu cuerpo, piel, pelo, cejas, pestañas, uñas,
-                rostro, etcétera; NUNCA es malgastar. Cuidarse, mimarse y
+                rostro, NUNCA es malgastar. Cuidarse, mimarse y
                 sentirse bien con uno mismo, para nosotros, no tiene precio.
               </li>
-              <li>Trabajamos para resaltar tu belleza.</li>
+              <li className="ml-4">Trabajamos para resaltar tu belleza.</li>
             </ul>
           </div>
         </div>

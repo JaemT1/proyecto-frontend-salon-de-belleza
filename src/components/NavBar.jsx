@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-900 py-4 px-6 flex justify-between items-center">
+    <nav className="bg-pink-600 py-4 px-6 flex justify-between items-center">
       <div>
         {/* Enlace a la página de inicio */}
 
@@ -28,24 +28,24 @@ const Navbar = () => {
       </div>
       <ul className="flex space-x-4 items-center">
         {/* Botones para otras páginas */}
-        <li className="text-white hover:text-pink-400 hover:border-b-4 rounded border-pink-400 transition duration-300 px-4 font-mono">
+        <li className="text-white hover:text-white hover:border-b-4 rounded border-white-400 transition duration-300 px-4 font-mono">
           {/* Puedes agregar más enlaces según tus necesidades */}
           Inicio
         </li>
-        <li className="text-white hover:text-pink-400 hover:border-b-4 rounded border-pink-400 transition duration-300 px-4 font-mono">
+        <li className="text-white hover:text-white hover:border-b-4 rounded border-white-400 transition duration-300 px-4 font-mono">
           {/* Puedes agregar más enlaces según tus necesidades */}
           Agenda tu cita
         </li>
-        <li className="text-white hover:text-pink-400 hover:border-b-4 rounded border-pink-400 transition duration-300 px-4 font-mono">
+        <li className="text-white hover:text-white hover:border-b-4 rounded border-white-400 transition duration-300 px-4 font-mono">
           {/* Puedes agregar más enlaces según tus necesidades */}
           Cotización Personalizada
         </li>
-        <li className="text-white hover:text-pink-400 hover:border-b-4 rounded border-pink-400 transition duration-300 px-4 font-mono">
+        <li className="text-white hover:text-white hover:border-b-4 rounded border-white-400 transition duration-300 px-4 font-mono">
           Boutique de Belleza
         </li>
         <li>
           <button
-            className="text-white bg-blue-500 hover:bg-pink-500 border-transparent px-4 py-2 rounded-full transition duration-300 font-mono"
+            className="text-white bg-[#be123c] hover:bg-pink-400 border-transparent px-4 py-2 rounded-full transition duration-300 font-mono"
             onClick={openLogin}
           >
             Iniciar Sesión
