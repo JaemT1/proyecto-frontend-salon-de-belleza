@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
-import Swal from 'sweetalert2'
+import showAlertsService from '../services/showAlertsService';
 import loginUser from '../services/usuarioLoginService';
 import RegisterForm from './RegisterForm';
 import PasswordRecoveryModal from './PasswordRecoveryModal';
+
 
 const Login = ({ closeModal }) => {
     const modalRef = useRef(null);
@@ -16,6 +17,14 @@ const Login = ({ closeModal }) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
             closeModal();
         }
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }));
     };
 
     //Manejo del recuperar contraseña
@@ -39,33 +48,16 @@ const Login = ({ closeModal }) => {
         const loginSuccess = await loginUser(formData);
 
         if (loginSuccess) {
-            Swal.fire({
-                icon: "success",
-                title: "Bienvenido (a)",
-                text: "Sesión Iniciada con éxito",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            showAlertsService.showSuccessAlert("Bienvenido (a)", "Sesión Iniciada con éxito", false, 2000);
             setTimeout(() => {
                 window.location.reload();
             }, 1600);
         } else {
-            Swal.fire({
-                title: "Hubo un error :(",
-                text: "Verifica tu correo y contraseña",
-                icon: "error"
-            });
+            showAlertsService.showErrorAlert("Hubo un error :(", "Verifica tu correo y contraseña", false, 2000);
         }
         closeModal();
     };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
-        }));
-    };
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40" onClick={handleOutsideClick}>

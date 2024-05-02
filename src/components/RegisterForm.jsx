@@ -1,5 +1,6 @@
 import { React, useRef, useState } from 'react';
 import Swal from 'sweetalert2'
+import showAlertsService from '../services/showAlertsService';
 import bcrypt from "bcryptjs-react";
 import userRegisterService from '../services/usuarioRegisterService';
 
@@ -64,26 +65,6 @@ const RegisterForm = ({ closeRegisterModal }) => {
         }
     };
 
-    const showLoadingAlert = () => {
-        let timerInterval;
-        Swal.fire({
-            title: "Cargando",
-            html: "Espere porfavor",
-            timer: 2000,
-            timerProgressBar: true,
-            didOpen: () => {
-                Swal.showLoading();
-            },
-            willClose: () => {
-                clearInterval(timerInterval);
-            }
-        }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log("I was closed by the timer");
-            }
-        });
-    };
-
     const handlePasswordHashing = async (e) => {
         e.preventDefault();
         const hashedPassword = await bcrypt.hash(formData.contrasena, 10);
@@ -96,7 +77,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
 
         if (formData.contrasena == formData.confirmarContrasena) { //Verifica que las contraseñas sean iguales
             if (handlePasswordVerification(formData.contrasena)) { //Verifica que la contraseña tenga los criterios de seguridad
-                showLoadingAlert();
+                showAlertsService.showLoadingAlert("Cargando", "Espere porfavor", 3000, false);
                 handlePasswordHashing(e); //Encripta la contraseña antes de enviarla al backend
 
                 try {
@@ -122,13 +103,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
 
                     console.log('Respuesta del registro:', response);
 
-                    Swal.fire({
-                        title: 'Registro de Usuarios',
-                        text: 'Registro Exitoso. Bienvenido(a)',
-                        icon: 'success',
-                        timer: '2000',
-                        showConfirmButton: false
-                    });
+                    showAlertsService.showSuccessAlert('Registro de Usuarios', 'Registro de Usuarios', false, 2000);
 
                     closeRegisterModal();
 
@@ -136,23 +111,11 @@ const RegisterForm = ({ closeRegisterModal }) => {
                     throw new Error(`Error al registrar, verifique los datos ingresados: ${error.message}`);
                 }
             } else {
-                Swal.fire({
-                    title: "Verifica la contraseña",
-                    text: "La contraseña debe tener al menos una mayúscula, un carácter especial y un número",
-                    icon: "error",
-                    timer: "2500",
-                    showConfirmButton: false
-                });
+                showAlertsService.showErrorAlert("Verifica la contraseña", "La contraseña debe tener al menos una mayúscula, un carácter especial y un número", false, 2500);
             }
 
         } else {
-            Swal.fire({
-                title: "Verifica la contraseña",
-                text: "Las contraseñas deben ser iguales",
-                icon: "error",
-                timer: "2500",
-                showConfirmButton: false
-            });
+            showAlertsService.showErrorAlert("Verifica la contraseña", "Las contraseñas deben ser iguales", false, 2500);
         }
     };
 
@@ -292,7 +255,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
                     </div>
                     <div className="flex">
                         <button type='submit' className="w-full bg-pink-500 group relative bg-gradient-to-r bg-length-0 bg-position-right text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-gradient-to-r hover:bg-length-full hover:bg-position-0 transition duration-1000 hover:bg-pink-300">
-                            Regístrame
+                            Regístrate
                         </button>
                     </div>
                 </form>

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import Swal from 'sweetalert2'
+import showAlertsService from '../services/showAlertsService';
 import PasswordResetModal from './PasswordResetModal';
+import passwordRecoveryService from '../services/passwordRecoveryService';
 
 const PasswordRecoveryModal = ({ closeModal }) => {
 
@@ -37,72 +38,36 @@ const PasswordRecoveryModal = ({ closeModal }) => {
 
     try {
       // Mostrar mensaje de carga
-      Swal.fire({
-        title: 'Cargando...',
-        text: 'Por favor, espera un momento.',
-        icon: 'info',
-        showConfirmButton: false,
-      });
+      showAlertsService.showLoadingAlert("Cargando", "Espere porfavor", 20000, false);
 
       // Mostrar indicador de carga
       setIsLoading(true);
 
       // Realizar la solicitud POST al servidor
-      const response = await fetch('http://localhost:9009/auth/verificationCodePasswordRecovery', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ correo: formData.correo }),
-      });
-
-
-      // Cerrar mensaje de carga
-      Swal.close();
+      const response = await passwordRecoveryService.passwordRecoveryVerificationCode(formData.correo)
 
       // Ocultar indicador de carga
       setIsLoading(false);
 
-
       // Verificar si la solicitud fue exitosa (código de estado 2xx)
-      if (response.ok) {
+      if (response) {
         console.log('Solicitud exitosa. Puedes manejar la respuesta del servidor aquí si es necesario.');
-        Swal.fire({
-          title: 'Código de Verificación',
-          text: 'Código de verificación enviado.',
-          icon: 'success',
-          timer: '3000',
-          showConfirmButton: false,
-        });
+        showAlertsService.showSuccessAlert('Código de Verificación', 'Código de verificación enviado.', false, 3000);
         // Mostrar el modal de cambio de contraseña después de enviar el formulario
         setShowPasswordResetModal(true);
         // Actualiza el estado para indicar que el formulario se ha enviado
         setIsFormSubmitted(true);
       } else {
-        // Manejar errores si la solicitud no fue exitosa
-        console.error('Error en la solicitud:', response.status, response.statusText);
-        Swal.fire({
-          title: 'Usuario No Encontrado',
-          text: 'No existe usuario con ese correo.',
-          icon: 'error',
-          timer: '3000',
-          showConfirmButton: false,
-        });
+        showAlertsService.showErrorAlert('Usuario No Encontrado', 'No existe usuario con ese correo.', false, 3000);
         closeModal();
       }
     } catch (error) {
-
       // Manejar errores de red o de la solicitud
       console.error('Error en la solicitud:', error.message);
-      // Cerrar mensaje de carga en caso de error
-      Swal.close();
-
       // Ocultar indicador de carga en caso de error
       setIsLoading(false);
-
       // Manejar errores de red o de la solicitud
       console.error('Error en la solicitud:', error.message);
-
     }
   };
 
@@ -145,7 +110,7 @@ const PasswordRecoveryModal = ({ closeModal }) => {
         ) : null}
 
         {showPasswordResetModal && (
-          <PasswordResetModal closeModal={() => setShowPasswordResetModal(false)} cedula={formData.correo} />
+          <PasswordResetModal closeModal={() => setShowPasswordResetModal(false)} correo={formData.correo} />
         )}
       </div>
     </div>
