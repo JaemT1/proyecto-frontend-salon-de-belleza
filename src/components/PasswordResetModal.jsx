@@ -49,7 +49,7 @@ const PasswordResetModal = ({ closeModal, correo }) => {
     const uppercaseRegex = /(?=.*[A-Z])/;
 
     // Verificar que la contraseña tenga al menos un carácter especial [.,!-#$%]
-    const specialCharRegex = /(?=.*[.,!-#$%])/;
+    const specialCharRegex = /(?=.*[.,!@_#$%-])/;
 
     // Verificar que la contraseña tenga al menos un número
     const digitRegex = /(?=.*[0-9])/;
@@ -67,7 +67,9 @@ const PasswordResetModal = ({ closeModal, correo }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(formData);
+    console.log(newPassword);
+    console.log(confirmPassword);
     if (newPassword == confirmPassword) {
       if (handlePasswordVerification(newPassword)) {
         setErrorMessage('');

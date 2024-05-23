@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from './login';
 
 const Navbar = ({ user, setUser }) => {
@@ -14,8 +14,30 @@ const Navbar = ({ user, setUser }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('correo');
+    localStorage.removeItem('linkFoto');
     setUser(null);
   };
+
+  const [userData, setUserData] = useState({ name: '', email: '', linkFoto: '' });
+
+  useEffect(() => {
+    // Obtener los valores separados del localStorage
+    const storedName = localStorage.getItem('nombre');
+    const storedEmail = localStorage.getItem('correo');
+    const storedLinkFoto = localStorage.getItem('linkFoto');
+    // Actualizar el estado con los valores obtenidos
+    if (storedName && storedEmail && storedLinkFoto) {
+      const cleanedName = storedName.replace(/^"|"$/g, '');
+      const cleanedEmail = storedEmail.replace(/^"|"$/g, '');
+      const cleanedLinkFoto = storedLinkFoto.replace(/^"|"$/g, '');
+      setUserData({ name: cleanedName, email: cleanedEmail, linkFoto: cleanedLinkFoto });
+    } else {
+      console.log('No hay datos de usuario almacenados.');
+    }
+
+  }, []);
 
   return (
     <nav className="bg-pink-600 py-4 px-6 flex justify-between items-center">
@@ -51,15 +73,15 @@ const Navbar = ({ user, setUser }) => {
                 data-dropdown-placement="bottom"
               >
                 <span className="sr-only">Open user menu</span>
-                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
+                <img className="w-8 h-8 rounded-full" src={userData.linkFoto} alt="user photo" />
               </button>
               <div
                 className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
-                  <span className="block text-sm text-gray-900 dark:text-white">ejemplo</span>
-                  <span className="block text-sm text-gray-500 truncate dark:text-gray-400">ejemplo.gmail.com</span>
+                  <span className="block text-sm text-gray-900 dark:text-white">{userData.name}</span>
+                  <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{userData.email}</span>
                 </div>
                 <ul className="py-2" aria-labelledby="user-menu-button">
                   <li>

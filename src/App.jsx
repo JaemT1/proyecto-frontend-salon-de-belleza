@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { decodeToken } from "react-jwt";
 import Navbar from './components/NavBar';
 import ContenidoHomeNosotros from './components/ContenidoHomeNosotros';
 import Footer from './components/footer';
@@ -10,6 +11,13 @@ function App() {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const myDecodedToken = decodeToken(storedUser);
+      localStorage.setItem('linkFoto', JSON.stringify(myDecodedToken.linkFoto)); // Guardar en localStorage
+      localStorage.setItem('nombre', JSON.stringify(myDecodedToken.name)); // Guardar en localStorage
+      localStorage.setItem('correo', JSON.stringify(myDecodedToken.sub)); // Guardar en localStorage
+      console.log(myDecodedToken);
+    }
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
