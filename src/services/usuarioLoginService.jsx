@@ -10,14 +10,14 @@ const loginUser = async (formData) => {
         if (response.status === 200) {
             const userData = response.data;
             console.log(userData);
-            // Almacenar datos en el localStorage para el tipo "paciente"
-            return true;
+            // Devuelve los datos del usuario para actualizar el estado en el App
+            return userData;
         } else {
-            return false;
+            return null;
         }
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
-        return false;
+        return null;
     }
 };
 

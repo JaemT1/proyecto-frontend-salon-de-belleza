@@ -49,7 +49,7 @@ const RegisterForm = ({ closeRegisterModal }) => {
         const uppercaseRegex = /(?=.*[A-Z])/;
 
         // Verificar que la contraseña tenga al menos un carácter especial [.,!-#$%]
-        const specialCharRegex = /(?=.*[.,!-#$%])/;
+        const specialCharRegex = /(?=.*[.,@_!#$%-])/;
 
         // Verificar que la contraseña tenga al menos un número
         const digitRegex = /(?=.*[0-9])/;
