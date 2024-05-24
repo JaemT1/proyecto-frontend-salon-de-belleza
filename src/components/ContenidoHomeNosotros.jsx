@@ -20,7 +20,7 @@ function ContenidoHomeNosotros() {
           </p>
         </div>
         <img
-          src="./src/images/Nosotros.jpg"
+          src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716585752/Im%C3%A1genes%20de%20recursos/uqvzabpgxcu5eorqwqdr.jpg"
           alt="Imagen"
           className="w-[300px] h-[500] rounded"
         />   

@@ -14,15 +14,15 @@ export function GalleryWithTab() {
       images: [
         {
           imageLink:
-            "./src/images/Peluqueria.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716585878/Im%C3%A1genes%20de%20recursos/xdip9pm7b66qt3l6ewv2.jpg",
         },
         {
           imageLink:
-            "./src/images/Peluqueria1.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716585906/Im%C3%A1genes%20de%20recursos/juuvy8rnmuvbjn6ksphd.jpg",
         },
         {
           imageLink:
-            "./src/images/Peluqueria2.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716585907/Im%C3%A1genes%20de%20recursos/jymxt01rugirtczxsnur.jpg",
         },
       ],
     },
@@ -32,15 +32,15 @@ export function GalleryWithTab() {
       images: [
         {
           imageLink:
-            "./src/images/Pestanas.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716585964/Im%C3%A1genes%20de%20recursos/gskguz4pfdvgchizkvho.jpg",
         },
         {
           imageLink:
-            "./src/images/Pestanas1.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716585964/Im%C3%A1genes%20de%20recursos/jfxvaxhqm5n1eg6rpyos.jpg",
         },
         {
           imageLink:
-            "./src/images/Pestanas2.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716585965/Im%C3%A1genes%20de%20recursos/osm1zn5hgagaharxidqe.jpg",
         },
       ],
     },
@@ -50,15 +50,15 @@ export function GalleryWithTab() {
       images: [
         {
           imageLink:
-            "./src/images/Cejas.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586086/Im%C3%A1genes%20de%20recursos/jmgrluquslm6958ppxuh.jpg",
         },
         {
           imageLink:
-            "./src/images/Cejas1.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586086/Im%C3%A1genes%20de%20recursos/imlu6ucaywpgxzfohnbz.jpg",
         },
         {
           imageLink:
-            "./src/images/Cejas2.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586086/Im%C3%A1genes%20de%20recursos/ffctqsl93d2i1v21vxuj.jpg",
         },
       ],
     },
@@ -68,15 +68,15 @@ export function GalleryWithTab() {
       images: [
         {
           imageLink:
-            "./src/images/Manos.jpg",
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586173/Im%C3%A1genes%20de%20recursos/rhomtfsvexvvnwnuy5ii.jpg",
         },
         {
           imageLink:
-            "./src/images/Manos1.jpg"
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586173/Im%C3%A1genes%20de%20recursos/easvxs4jek5obfhyyasf.jpg"
         },
         {
           imageLink:
-            "./src/images/Manos2.jpg"
+            "https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586173/Im%C3%A1genes%20de%20recursos/ujwjueg6mut3bvxxh4sh.jpg"
         },
       ],
     },

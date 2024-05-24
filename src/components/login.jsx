@@ -3,7 +3,6 @@ import showAlertsService from '../services/showAlertsService';
 import loginUser from '../services/usuarioLoginService';
 import RegisterForm from './RegisterForm';
 import PasswordRecoveryModal from './PasswordRecoveryModal';
-import { decodeToken } from "react-jwt";
 
 const Login = ({ closeModal, setUser }) => {
     const modalRef = useRef(null);
@@ -64,7 +63,7 @@ const Login = ({ closeModal, setUser }) => {
                         
                             <div className="w-2/4">
                                 <div className=" mb-4 w-auto m-auto">
-                                    <img src="./src/images/GR NEGRO recortado.png" alt="logo" />
+                                    <img src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586824/Im%C3%A1genes%20de%20recursos/onzvaopvoxzfzxsdtqtr.png" alt="logo" />
                                 </div>
                                 <div className='flex items-center justify-center mb-4'>
                                     <h1 className="font-serif font-bold text-gray-700 text-2xl">

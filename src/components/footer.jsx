@@ -34,7 +34,7 @@ function Footer() {
                   }
                 >
                   <img
-                    src="./src/images/icono-fb.png"
+                    src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586286/Im%C3%A1genes%20de%20recursos/jb7wiltbzc4klab69hwc.png"
                     alt="Facebook"
                     className="px-3"
                     style={{ width: "70px" }}
@@ -51,7 +51,7 @@ function Footer() {
                   }
                 >
                   <img
-                    src="./src/images/icono-ig.png"
+                    src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586304/Im%C3%A1genes%20de%20recursos/xpk8cewqnfrdgza2p8wj.png"
                     alt="Instgram"
                     className="px-3"
                     style={{ width: "70px" }}
@@ -69,8 +69,8 @@ function Footer() {
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4 flex items-center">
                 <img
-                  src="./src/images/GR-NEGRO.png"
-                  alt="Facebook"
+                  src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586696/Im%C3%A1genes%20de%20recursos/ewqalvkkgaofsoea1fsz.png"
+                  alt="Logo"
                   className="px-3"
                   style={{ width: "70px" }}
                 />
@@ -79,8 +79,8 @@ function Footer() {
               </li>
               <li className="mb-4 flex items-center">
                 <img
-                  src="./src/images/icono-contacto.png"
-                  alt="Facebook"
+                  src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586744/Im%C3%A1genes%20de%20recursos/genwzpmsbwbndperxudz.png"
+                  alt="Contacto"
                   className="px-3"
                   style={{ width: "70px" }}
                 />
@@ -88,8 +88,8 @@ function Footer() {
               </li>
               <li className="mb-4 flex items-center">
                 <img
-                  src="./src/images/icono-email.png"
-                  alt="Facebook"
+                  src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586778/Im%C3%A1genes%20de%20recursos/wvlrnwrllamwarynjvxo.png"
+                  alt="correo"
                   className="px-3"
                   style={{ width: "70px" }}
                 />

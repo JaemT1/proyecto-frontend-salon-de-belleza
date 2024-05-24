@@ -75,7 +75,7 @@ const PasswordRecoveryModal = ({ closeModal }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={handleOutsideClick}>
       <div className="bg-white rounded-lg p-8 w-1/4" ref={modalRef}>
         <div className=" mb-4 w-auto m-auto">
-          <img src="./src/images/GR-NEGRO.png" alt="logo" />
+          <img src="https://res.cloudinary.com/dkm9g0zpt/image/upload/v1716586696/Im%C3%A1genes%20de%20recursos/ewqalvkkgaofsoea1fsz.png" alt="logo" />
         </div>
         {!showPasswordResetModal ? (
           <>
