@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const loginUser = async (formData) => {
     try {
-        const response = await axios.post('http://localhost:9009/auth/authenticate', formData, {
+        const response = await axios.post('https://demoproyectosalondebelleza.fly.dev/auth/authenticate', formData, {
             headers: {
                 'Content-Type': 'application/json',
             },

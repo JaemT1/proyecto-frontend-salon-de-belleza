@@ -4,7 +4,7 @@ export function GalleryWithCarousel() {
   return (
     <Carousel autoplayDelay={3000} loop={true} autoplay={true} className="w-full md:h-96 z-10">
       <img
-        src="./src/images/Carrusel-item-1.jpg"
+        src="./PROYECTO-FRONTEND-SALON-DE-BELLEZA/src/images/Carrusel-item-1.jpg"
         alt="image 1"
         className="h-full w-full object-cover object-center"
       />
